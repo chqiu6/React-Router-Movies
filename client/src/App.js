@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import MovieList from "./Movies/MovieList";
+import {Route} from "react-router-dom";
 
 import SavedList from './Movies/SavedList';
 
@@ -12,6 +14,7 @@ const App = () => {
       axios
         .get('http://localhost:5000/api/movies')
         .then(response => {
+          console.log("response : ", response);
           setMovieList(response.data);
         })
         .catch(error => {
@@ -29,6 +32,7 @@ const App = () => {
     <div>
       <SavedList list={[ /* This is stretch */]} />
       <div>Replace this Div with your Routes</div>
+      <Route exact path = "/" component = {MovieList} />
     </div>
   );
 };
